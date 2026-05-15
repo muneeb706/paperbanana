@@ -3415,6 +3415,10 @@ def doctor(
     ),
 ) -> None:
     """Check system health: optional dependencies, API keys, and reference data."""
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
     from paperbanana.doctor import run_doctor
 
     raise typer.Exit(run_doctor(output_json=json_output))
