@@ -51,3 +51,13 @@ Key architectural layers:
 - **Ruff for all linting/formatting**: Line length 100, target Python 3.10. Select rules: E, F, I, N, W.
 - **structlog for logging**: Use `structlog.get_logger()` with keyword arguments, not f-strings in log calls.
 - **Entry points**: CLI via Typer (`paperbanana.cli:app`), MCP server via FastMCP (`mcp_server.server:main`).
+
+## Git Commit Messages
+
+When generating commit messages:
+- Use **Conventional Commits** format: `<type>(<scope>): <subject>`
+- **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
+- **Subject**: Use imperative mood (e.g., "add" instead of "added"), start with lowercase, and do not end with a period.
+- **Body**: Provide additional context when necessary, focusing on "why" rather than "how".
+- **Footer**: Reference issue numbers if applicable (e.g., `Closes #123`).
+- **Breaking Changes**: Use an exclamation mark after the type/scope (e.g., `feat!: ...`) and include `BREAKING CHANGE:` in the footer.
