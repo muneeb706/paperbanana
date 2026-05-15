@@ -167,6 +167,58 @@ Gemini-compatible gateways are also supported — set `GOOGLE_BASE_URL` when nee
 
 ---
 
+## Reference Sets & Data Management
+
+PaperBanana uses a "Retriever-Planner" architecture that selects relevant examples from a reference set to guide the VLM during planning.
+
+### Built-in Set
+The repository includes a small, high-quality set of **13 methodology diagrams** (located in `data/reference_sets/`) that cover common AI architecture patterns.
+
+### Expanded Sets (PaperBananaBench)
+For better variety and higher-fidelity planning, you can download the expanded reference sets from the official **PaperBananaBench** dataset (hosted on HuggingFace).
+
+#### 1. Download via CLI (Recommended)
+Use the `data download` command to fetch and cache the expanded sets:
+
+```bash
+# Download the full benchmark (~257MB, recommended for best results)
+paperbanana data download --task both
+
+# Or download a lightweight "curated expansion" (~20-35 images)
+paperbanana data download --curated
+```
+
+The data is cached in the platform's default cache directory (e.g., `~/Library/Caches/paperbanana/reference_sets/` on macOS, or `~/.cache/paperbanana/reference_sets/` on Linux) and is automatically used by the pipeline if present.
+
+#### 2. Auto-Download
+You can also trigger the download automatically during a generation run if the expanded set is missing:
+
+```bash
+paperbanana generate --input method.txt --caption "..." --auto-download-data
+```
+
+### Managing References
+Use the `data info` and `references` subcommands to inspect your datasets:
+
+```bash
+# Show info about the cached dataset (location, version, count)
+paperbanana data info
+
+# List all available reference examples and their categories
+paperbanana references list
+
+# List available categories
+paperbanana references categories
+
+# Show a specific example's metadata and description
+paperbanana references show <example_id>
+
+# Clear the cached expansion and revert to the built-in set
+paperbanana data clear
+```
+
+---
+
 ## CLI Reference
 
 ### `paperbanana generate` -- Methodology Diagrams
