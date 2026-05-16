@@ -37,7 +37,13 @@ The generation process is divided into two distinct phases:
 2. **CriticAgent**: A Vision-LLM that loads the generated image, evaluates it against the source context, and provides:
     - **Critique**: List of visual or logical errors.
     - **Revised Description**: An updated prompt for the next generation attempt.
-**Terminal State**: Reached when the Critic is satisfied or the iteration limit is hit.
+
+#### Smart Termination Logic:
+To optimize for both time and API costs, the pipeline implements an early-exit strategy:
+- **Condition**: After each refinement, the `CriticAgent` evaluates if the current image faithfully represents the source methodology.
+- **Action**: If the `Critic` is satisfied (`needs_revision=False`), the pipeline terminates immediately, even if the user-specified iteration limit ($N$) hasn't been reached.
+- **Terminal State**: Reached when the Critic is satisfied or the maximum iteration limit ($N$) is hit.
+
 
 ---
 
