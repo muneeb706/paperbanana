@@ -1,0 +1,19 @@
+The PaperBanana framework automates academic illustration through a multi-layer, provider-agnostic orchestration pattern. The architecture relies on the Orchestration Core (PaperBananaPipeline) to manage state transitions using Pydantic models (GenerationInput, IterationRecord, GenerationOutput). The data flow moves through three distinct phases.
+
+Phase 0: Input Optimization. 
+The pipeline ingests a GenerationInput (raw text and caption). The InputOptimizerAgent processes this data in parallel using two sub-tasks: the Context Enricher (which structures the raw methodology text) and the Caption Sharpener (which refines the communicative intent).
+
+Phase 1: Linear Planning. 
+This phase sequentially executes three agents to build a textual blueprint:
+1. RetrieverAgent: Fetches relevant visual examples from the curated Reference Database.
+2. PlannerAgent: Uses the retrieved examples to construct a detailed textual description and recommends an aspect ratio.
+3. StylistAgent: Enhances the description for visual aesthetics based on specific conference style guidelines (e.g., NeurIPS, ICML).
+
+Phase 1b: Intermediate Representation (Vector Export).
+Operating alongside the main pipeline, the StructurerAgent (or IRPlannerAgent) can convert the structured text into a DiagramIR JSON model. This data is passed to a Graphviz compiler to generate DOT code, outputting clean vector graphics (SVG/PDF).
+
+Phase 2: Iterative Refinement. 
+This is a closed-loop system handling the final raster image generation:
+1. VisualizerAgent: Uses an Image Generation Provider to render the styled description into a raster image.
+2. CriticAgent: A Vision-LLM loads the generated image and evaluates it against the source context. It outputs a CritiqueResult containing a list of visual errors and a revised description prompt.
+The Visualizer uses this revised description to generate a new image. This loop continues until the Critic is satisfied or the iteration limit is reached, resulting in the final GenerationOutput.
