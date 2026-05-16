@@ -22,7 +22,7 @@ VLM_PRICING: dict[tuple[str, str], dict[str, float]] = {
     ("gemini", "gemini-2.5-flash"): {"input_per_1k": 0.00015, "output_per_1k": 0.0006},
     ("gemini", "gemini-2.5-pro"): {"input_per_1k": 0.00125, "output_per_1k": 0.01},
     ("gemini", "gemini-3-pro"): {"input_per_1k": 0.00125, "output_per_1k": 0.005},
-    ("gemini", "gemini-3-pro-preview"): {"input_per_1k": 0.00125, "output_per_1k": 0.005},
+    ("gemini", "gemini-3-pro-preview"): {"input_per_1k": 0.002, "output_per_1k": 0.012},
     # OpenAI
     ("openai", "gpt-5.2"): {"input_per_1k": 0.0025, "output_per_1k": 0.01},
     ("openai", "gpt-5.1"): {"input_per_1k": 0.002, "output_per_1k": 0.008},
@@ -48,8 +48,8 @@ VLM_PRICING: dict[tuple[str, str], dict[str, float]] = {
 IMAGE_GEN_PRICING: dict[tuple[str, str], float] = {
     # Google Imagen — free tier
     ("google_imagen", "gemini-3-pro-image-preview"): 0.0,
-    ("google_imagen", "gemini-3.1-flash-image-preview"): 0.03,
-    ("google_imagen", "gemini-2.5-flash-image"): 0.03,
+    ("google_imagen", "gemini-3.1-flash-image-preview"): 0.067,
+    ("google_imagen", "gemini-2.5-flash-image"): 0.067,
     # OpenAI
     ("openai_imagen", "gpt-image-1.5"): 0.02,
     ("openai_imagen", "gpt-image-1"): 0.04,
