@@ -23,6 +23,7 @@ VLM_PRICING: dict[tuple[str, str], dict[str, float]] = {
     ("gemini", "gemini-2.5-pro"): {"input_per_1k": 0.00125, "output_per_1k": 0.01},
     ("gemini", "gemini-3-pro"): {"input_per_1k": 0.00125, "output_per_1k": 0.005},
     ("gemini", "gemini-3-pro-preview"): {"input_per_1k": 0.002, "output_per_1k": 0.012},
+    ("gemini", "gemini-3.5-flash"): {"input_per_1k": 0.00015, "output_per_1k": 0.0006},
     # OpenAI
     ("openai", "gpt-5.2"): {"input_per_1k": 0.0025, "output_per_1k": 0.01},
     ("openai", "gpt-5.1"): {"input_per_1k": 0.002, "output_per_1k": 0.008},
